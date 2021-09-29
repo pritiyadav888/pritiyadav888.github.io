@@ -1,42 +1,95 @@
 import 'package:flutter/material.dart';
-import 'package:splashscreen/splashscreen.dart';
+import 'package:flutter/services.dart';
 
 void main() {
-  runApp(MyApp());
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setEnabledSystemUIOverlays(
+      [SystemUiOverlay.bottom, SystemUiOverlay.top]);
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
+
+  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Splash Screen',
-      theme: ThemeData(
-        primarySwatch: Colors.green,
-      ),
-      home: Splash2(),
-      debugShowCheckedModeBanner: false,
+    return FutureBuilder(
+      future: Init.instance.initialize(),
+      builder: (context, AsyncSnapshot snapshot) {
+        // Show splash screen while waiting for app resources to load:
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return MaterialApp(home: Splash());
+        } else {
+          // Loading is done, return the app:
+          return MaterialApp(
+            title: 'Work',
+            theme: ThemeData(
+              primarySwatch: Colors.blue,
+            ),
+            home: MyHomePage(),
+          );
+        }
+      },
     );
   }
 }
 
-class Splash2 extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return SplashScreen(
-      seconds: 5,
-      navigateAfterSeconds: MyHomePage(),
-      title: const Text(
-        "Let'sStopAids",
-        textScaleFactor: 2,
-      ),
-      image: Image.asset('assets/images/splashpage_black.png'),
-      loadingText: const Text("Hang On!"),
-      photoSize: 200.0,
-      loaderColor: Colors.blue,
-    );
-  }
-}
+//+++++++++++++++++++++++++++++++++
+//
+//
+// import 'package:flutter/material.dart';
+// import 'package:splashscreen/splashscreen.dart';
+
+// void main() {
+//   runApp(MyApp());
+// }
+//
+// class MyApp extends StatelessWidget {
+//   const MyApp({Key? key}) : super(key: key);
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       title: 'Work',
+//       theme: ThemeData(
+//         primarySwatch: Colors.green,
+//       ),
+//       home: Splash(),
+//       debugShowCheckedModeBanner: false,
+//     );
+//   }
+// }
+//
+// class Splash extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     bool lightMode =
+//         MediaQuery.of(context).platformBrightness == Brightness.light;
+//     return Scaffold(
+//       // seconds: 5,
+//       // navigateAfterSeconds: MyHomePage(),
+//       backgroundColor: lightMode
+//           ? const Color(0x00e1f5fe).withOpacity(1.0)
+//           : const Color(0x00042a49).withOpacity(1.0),
+//       body: Center(
+//           child: lightMode
+//               ? Image.asset('assets/images/splashpage_black.png')
+//               : Image.asset('assets/images/splashpage_red.png')),
+//     );
+//     // return SplashScreen(
+//     //   seconds: 5,
+//     //   navigateAfterSeconds: MyHomePage(),
+//     //   title: const Text(
+//     //     "Let'sStopAids",
+//     //     textScaleFactor: 2,
+//     //   ),
+//     //   image: Image.asset('assets/images/splashpage_black.png'),
+//     //   loadingText: const Text("Hang On!"),
+//     //   photoSize: 200.0,
+//     //   loaderColor: Colors.blue,
+//     // );
+//   }
+// }
 
 class MyHomePage extends StatefulWidget {
   @override
@@ -309,29 +362,10 @@ class _MyHomePageState extends State<MyHomePage> {
                             ],
                           ),
                           const SizedBox(height: 25),
-                          // const Text(
-                          //   "Made By",
-                          //   textAlign: TextAlign.center,
-                          //   style: TextStyle(
-                          //     fontSize: 15,
-                          //     fontFamily: "Poppins",
-                          //     letterSpacing: 1.3,
-                          //     color: Color(0xffffaf00),
-                          //   ),
-                          // ),
-                          // const Text(
-                          //   "XamDesign",
-                          //   textAlign: TextAlign.center,
-                          //   style: TextStyle(
-                          //     fontSize: 20,
-                          //     fontFamily: "Poppins",
-                          //     letterSpacing: 1.8,
-                          //     color: Color(0xffffaf00),
-                          //   ),
-                          // ),
-                          const SizedBox(
-                            height: 50,
-                          )
+
+                          // const SizedBox(
+                          //   height: 50,
+                          // )
                         ],
                       ),
                     ],
@@ -348,16 +382,16 @@ class _MyHomePageState extends State<MyHomePage> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: <Widget>[
                           const Text(
-                            "BACK TO HOME",
-                            textAlign: TextAlign.left,
+                            "SPEAKERS",
+                            textAlign: TextAlign.center,
                             style: TextStyle(
-                                fontSize: 10,
+                                fontSize: 50,
                                 fontFamily: "Poppins",
                                 letterSpacing: 1.8,
                                 color: Color(0xffffaf00)),
                           ),
                           const Text(
-                            "SPEAKERS",
+                            "TOWAIT",
                             textAlign: TextAlign.center,
                             style: TextStyle(
                                 fontSize: 48,
@@ -400,31 +434,82 @@ class _MyHomePageState extends State<MyHomePage> {
                             ],
                           ),
                           const SizedBox(height: 25),
-                          // const Text(
-                          //   "Made By",
-                          //   textAlign: TextAlign.center,
-                          //   style: TextStyle(
-                          //     fontSize: 15,
-                          //     fontFamily: "Poppins",
-                          //     letterSpacing: 1.3,
-                          //     color: Color(0xffffaf00),
-                          //   ),
-                          // ),
-                          // const Text(
-                          //   "XamDesign",
-                          //   textAlign: TextAlign.center,
-                          //   style: TextStyle(
-                          //     fontSize: 20,
-                          //     fontFamily: "Poppins",
-                          //     letterSpacing: 1.8,
-                          //     color: Color(0xffffaf00),
-                          //   ),
-                          // ),
-                          const SizedBox(
-                            height: 50,
-                          )
+
+                          // const SizedBox(
+                          //   height: 50,
+                          // )
                         ],
                       ),
+                      const Text(
+                        "SPEAKERS",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            fontSize: 50,
+                            fontFamily: "Poppins",
+                            letterSpacing: 1.8,
+                            color: Color(0xffffaf00)),
+                      ),
+                      GridView.count(
+                        primary: false,
+                        padding: const EdgeInsets.all(10),
+                        crossAxisSpacing: 20,
+                        mainAxisSpacing: 20,
+                        crossAxisCount: 3,
+                        children: <Widget>[
+                          Container(
+                            padding: const EdgeInsets.all(8),
+                            child:
+                                const Text("He'd have you all unravel at the"),
+                            color: Colors.teal[100],
+                          ),
+                          Container(
+                            padding: const EdgeInsets.all(8),
+                            child: const Text('Heed not the rabble'),
+                            color: Colors.teal[200],
+                          ),
+                          Container(
+                            padding: const EdgeInsets.all(8),
+                            child: const Text('Sound of screams but the'),
+                            color: Colors.teal[300],
+                          ),
+                          Container(
+                            padding: const EdgeInsets.all(8),
+                            child: const Text('Who scream'),
+                            color: Colors.teal[400],
+                          ),
+                          Container(
+                            padding: const EdgeInsets.all(8),
+                            child: const Text('Revolution is coming...'),
+                            color: Colors.teal[500],
+                          ),
+                          Container(
+                            padding: const EdgeInsets.all(8),
+                            child: const Text('Revolution, they...'),
+                            color: Colors.teal[600],
+                          ),
+                          Container(
+                            padding: const EdgeInsets.all(8),
+                            child: const Text('Revolution, they...'),
+                            color: Colors.teal[600],
+                          ),
+                          Container(
+                            padding: const EdgeInsets.all(8),
+                            child: const Text('Revolution, they...'),
+                            color: Colors.teal[600],
+                          ),
+                          Container(
+                            padding: const EdgeInsets.all(8),
+                            child: const Text('Revolution, they...'),
+                            color: Colors.teal[600],
+                          ),
+                          Container(
+                            padding: const EdgeInsets.all(8),
+                            child: const Text('Revolution, they...'),
+                            color: Colors.teal[600],
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 50),
                     ],
                   ),
                 ),
@@ -457,5 +542,34 @@ class ParallaxWidget extends StatelessWidget {
         child: Image.asset("assets/images/image2.jpeg", fit: BoxFit.cover),
       ),
     );
+  }
+}
+
+class Splash extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    bool lightMode =
+        MediaQuery.of(context).platformBrightness == Brightness.dark;
+    return Scaffold(
+      backgroundColor: lightMode
+          ? Color(0xe1f5fe).withOpacity(1.0)
+          : Color(0x042a49).withOpacity(1.0),
+      body: Center(
+          child: lightMode
+              ? Image.asset('assets/images/splashpage_black.png')
+              : Image.asset('assets/images/splashpage_red.png')),
+    );
+  }
+}
+
+class Init {
+  Init._();
+  static final instance = Init._();
+
+  Future initialize() async {
+    // This is where you can initialize the resources needed by your app while
+    // the splash screen is displayed.  Remove the following example because
+    // delaying the user experience is a bad design practice!
+    await Future.delayed(const Duration(seconds: 5));
   }
 }
