@@ -1,19 +1,10 @@
-// import 'dart:html';
-
 import 'package:flutter/material.dart';
-import 'package:transparent_image/transparent_image.dart';
 import 'package:splashscreen/splashscreen.dart';
 
-void main() => runApp(const MyApp());
+void main() {
+  runApp(MyApp());
+}
 
-// const p1image = 'assets/images/image2.jpeg';
-// const p2image = 'assets/images/IMG_5659.jpg';
-// const p3image = 'assets/images/image3.jpg';
-// const p4image = 'assets/images/image4.jpg';
-// const p5image = 'assets/images/image5.jpg';
-const totalpagenumber = 5;
-
-// -------------Root-------------
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
   @override
@@ -33,7 +24,7 @@ class Splash2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SplashScreen(
-      seconds: 8,
+      seconds: 5,
       navigateAfterSeconds: MyHomePage(),
       title: const Text(
         "Let'sStopAids",
@@ -47,183 +38,424 @@ class Splash2 extends StatelessWidget {
   }
 }
 
-// -------------Home class-------------
 class MyHomePage extends StatefulWidget {
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  // -----Scrolling attributes-----
-  double offset = 0; // Scrollbar position
-  double buffer = 99999; // Scrolling buffer between each page
-  double top_page2 = 99999; // Top position for each pages
-  double top_page3 = 99999;
-  double top_page4 = 99999;
+  double imgRateZero = 0;
+  double imgRateOne = 0;
+  double imgRateTwo = 0;
+  double imgRateThree = 0;
+  double imgRateFour = 0;
+  double imgRateFive = 0;
+  double imgRateSix = 0;
+  double imgRateSeven = 0;
+  double imgRateEight = 90;
 
-  var height; // Width & height of user screen
-  var width;
-
-  // -----Scrolling methods-----
-
-  // Whenever end user move scroll bar, scrolling attributes will be updated
-  bool updateOffsetAccordingToScroll(ScrollNotification scrollNotification) {
-    setState(() => offset = scrollNotification.metrics.pixels);
-    setState(() => top_page2 = calculateTop(2));
-    setState(() => top_page3 = calculateTop(3));
-    setState(() => top_page4 = calculateTop(4));
-    return true;
-  }
-
-  // If the page hits the top of the screen (top position<= 0), set the top value 0 so the widget sticks on the top.
-  double calculateTop(int page) {
-    double top_placeholder = ((height * (page - 1)) + (buffer * (page - 1)));
-    double top_current =
-        top_placeholder - offset; // Offset = how much pixel has scrolled down
-    double stop_point = -1 * buffer;
-
-    if (top_current > height) {
-      // Should hold
-      return top_current + offset;
-    } else if (top_current < height && top_current > stop_point) {
-      //  Should start moving
-      return top_current;
-    } else {
-      // Should stick at the top
-      return stop_point;
-    }
-  }
-
-  // Build this page
   @override
   Widget build(BuildContext context) {
-    // Assign screen height + width when building
-    height = MediaQuery.of(context).size.height;
-    width = MediaQuery.of(context).size.width;
-    buffer = height * 0.5; // Adjust your scrolling buffer size here
-
-    return Material(
-      child: NotificationListener<ScrollNotification>(
-        // Set scrolling controller
-        onNotification: updateOffsetAccordingToScroll,
-        child: ScrollConfiguration(
-          behavior: NoScrollGlow(),
-          child: Stack(
-            children: <Widget>[
-              page1(),
-              page2(),
-              page3(),
-              page4(),
-              last_page(),
-            ],
-          ),
+    return Scaffold(
+      backgroundColor: const Color(0xff210002),
+      body: NotificationListener(
+        onNotification: (sc) {
+          if (sc is ScrollUpdateNotification) {
+            setState(() {
+              imgRateEight -= sc.scrollDelta! / 1;
+              imgRateSeven -= sc.scrollDelta! / 1.5;
+              imgRateSix -= sc.scrollDelta! / 2;
+              imgRateFive -= sc.scrollDelta! / 2.5;
+              imgRateFour -= sc.scrollDelta! / 3;
+              imgRateThree -= sc.scrollDelta! / 3.5;
+              imgRateTwo -= sc.scrollDelta! / 4;
+              imgRateOne -= sc.scrollDelta! / 4.5;
+              imgRateZero -= sc.scrollDelta! / 5;
+            });
+          }
+          return true;
+        },
+        child: Stack(
+          children: <Widget>[
+            ParallaxWidget(top: imgRateZero, asset: "image2"),
+            ListView(
+              children: <Widget>[
+                Container(
+                  height: 600,
+                  color: Colors.transparent,
+                ),
+                Container(
+                  color: const Color(0xff210002),
+                  width: MediaQuery.of(context).size.width,
+                  height: 1500,
+                  padding: const EdgeInsets.only(top: 70),
+                  child: Stack(
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: <Widget>[
+                          const Text(
+                            "SIGN ",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                fontSize: 30,
+                                fontFamily: "Poppins",
+                                letterSpacing: 1.8,
+                                color: Color(0xffffaf00)),
+                          ),
+                          const Text(
+                            "UP",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                fontSize: 48,
+                                fontFamily: "Poppins",
+                                letterSpacing: 1.8,
+                                color: Color(0xffffaf00)),
+                          ),
+                          const SizedBox(
+                            height: 25,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Container(
+                                width: 150,
+                                child: const Divider(
+                                  height: 1,
+                                  color: Color(0xffffaf00),
+                                ),
+                              ),
+                              Container(
+                                width: 20,
+                                height: 20,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  color: const Color(0xffffaf00),
+                                ),
+                                child: const Divider(
+                                  height: 1,
+                                  color: Color(0xffffaf00),
+                                ),
+                              ),
+                              Container(
+                                width: 150,
+                                child: const Divider(
+                                  height: 1,
+                                  color: const Color(0xffffaf00),
+                                ),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 25),
+                          const SizedBox(
+                            height: 50,
+                          )
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+                Container(
+                  color: const Color(0xff545e41),
+                  width: MediaQuery.of(context).size.width,
+                  height: 1500,
+                  padding: const EdgeInsets.only(top: 70),
+                  child: Stack(
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: <Widget>[
+                          const Text(
+                            "SCHEDULE",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                fontSize: 50,
+                                fontFamily: "Poppins",
+                                letterSpacing: 1.8,
+                                color: Color(0xffffaf00)),
+                          ),
+                          const Text(
+                            "NOVEMBER 20",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                fontSize: 30,
+                                fontFamily: "Poppins",
+                                letterSpacing: 1.8,
+                                color: Color(0xffffaf00)),
+                          ),
+                          const SizedBox(
+                            height: 25,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Container(
+                                width: 150,
+                                child: const Divider(
+                                  height: 1,
+                                  color: Color(0xffffaf00),
+                                ),
+                              ),
+                              Container(
+                                width: 20,
+                                height: 20,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  color: const Color(0xffffaf00),
+                                ),
+                                child: const Divider(
+                                  height: 1,
+                                  color: Color(0xffffaf00),
+                                ),
+                              ),
+                              Container(
+                                width: 150,
+                                child: const Divider(
+                                  height: 1,
+                                  color: const Color(0xffffaf00),
+                                ),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 25),
+                          // const Text(
+                          //   "Made By",
+                          //   textAlign: TextAlign.center,
+                          //   style: TextStyle(
+                          //     fontSize: 15,
+                          //     fontFamily: "Poppins",
+                          //     letterSpacing: 1.3,
+                          //     color: Color(0xffffaf00),
+                          //   ),
+                          // ),
+                          // const Text(
+                          //   "XamDesign",
+                          //   textAlign: TextAlign.center,
+                          //   style: TextStyle(
+                          //     fontSize: 20,
+                          //     fontFamily: "Poppins",
+                          //     letterSpacing: 1.8,
+                          //     color: Color(0xffffaf00),
+                          //   ),
+                          // ),
+                          const SizedBox(
+                            height: 50,
+                          )
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+                Container(
+                  color: const Color(0xffc1e0d9),
+                  width: MediaQuery.of(context).size.width,
+                  height: 1500,
+                  padding: const EdgeInsets.only(top: 70),
+                  child: Stack(
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: <Widget>[
+                          const Text(
+                            "NOTIME",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                fontSize: 30,
+                                fontFamily: "Poppins",
+                                letterSpacing: 1.8,
+                                color: Color(0xffffaf00)),
+                          ),
+                          const Text(
+                            "TOWAIT",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                fontSize: 48,
+                                fontFamily: "Poppins",
+                                letterSpacing: 1.8,
+                                color: Color(0xffffaf00)),
+                          ),
+                          const SizedBox(
+                            height: 25,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Container(
+                                width: 150,
+                                child: const Divider(
+                                  height: 1,
+                                  color: Color(0xffffaf00),
+                                ),
+                              ),
+                              Container(
+                                width: 20,
+                                height: 20,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  color: const Color(0xffffaf00),
+                                ),
+                                child: const Divider(
+                                  height: 1,
+                                  color: Color(0xffffaf00),
+                                ),
+                              ),
+                              Container(
+                                width: 150,
+                                child: const Divider(
+                                  height: 1,
+                                  color: const Color(0xffffaf00),
+                                ),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 25),
+                          // const Text(
+                          //   "Made By",
+                          //   textAlign: TextAlign.center,
+                          //   style: TextStyle(
+                          //     fontSize: 15,
+                          //     fontFamily: "Poppins",
+                          //     letterSpacing: 1.3,
+                          //     color: Color(0xffffaf00),
+                          //   ),
+                          // ),
+                          // const Text(
+                          //   "XamDesign",
+                          //   textAlign: TextAlign.center,
+                          //   style: TextStyle(
+                          //     fontSize: 20,
+                          //     fontFamily: "Poppins",
+                          //     letterSpacing: 1.8,
+                          //     color: Color(0xffffaf00),
+                          //   ),
+                          // ),
+                          const SizedBox(
+                            height: 50,
+                          )
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+                Container(
+                  color: const Color(0xff210002),
+                  width: MediaQuery.of(context).size.width,
+                  height: 1500,
+                  padding: const EdgeInsets.only(top: 70),
+                  child: Stack(
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: <Widget>[
+                          const Text(
+                            "BACK TO HOME",
+                            textAlign: TextAlign.left,
+                            style: TextStyle(
+                                fontSize: 10,
+                                fontFamily: "Poppins",
+                                letterSpacing: 1.8,
+                                color: Color(0xffffaf00)),
+                          ),
+                          const Text(
+                            "SPEAKERS",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                fontSize: 48,
+                                fontFamily: "Poppins",
+                                letterSpacing: 1.8,
+                                color: Color(0xffffaf00)),
+                          ),
+                          const SizedBox(
+                            height: 25,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Container(
+                                width: 150,
+                                child: const Divider(
+                                  height: 1,
+                                  color: Color(0xffffaf00),
+                                ),
+                              ),
+                              Container(
+                                width: 20,
+                                height: 20,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  color: const Color(0xffffaf00),
+                                ),
+                                child: const Divider(
+                                  height: 1,
+                                  color: Color(0xffffaf00),
+                                ),
+                              ),
+                              Container(
+                                width: 150,
+                                child: const Divider(
+                                  height: 1,
+                                  color: const Color(0xffffaf00),
+                                ),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 25),
+                          // const Text(
+                          //   "Made By",
+                          //   textAlign: TextAlign.center,
+                          //   style: TextStyle(
+                          //     fontSize: 15,
+                          //     fontFamily: "Poppins",
+                          //     letterSpacing: 1.3,
+                          //     color: Color(0xffffaf00),
+                          //   ),
+                          // ),
+                          // const Text(
+                          //   "XamDesign",
+                          //   textAlign: TextAlign.center,
+                          //   style: TextStyle(
+                          //     fontSize: 20,
+                          //     fontFamily: "Poppins",
+                          //     letterSpacing: 1.8,
+                          //     color: Color(0xffffaf00),
+                          //   ),
+                          // ),
+                          const SizedBox(
+                            height: 50,
+                          )
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            )
+          ],
         ),
       ),
     );
-  }
-
-  Widget page1() {
-    return Positioned(
-      top: 0, // page1 is fixed
-      child: FadeInImage.memoryNetwork(
-        placeholder: kTransparentImage,
-        image:
-            'https://images.unsplash.com/photo-1515549832467-8783363e19b6?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8ZHVsbCUyMGJhY2tncm91bmRzfGVufDB8fDB8d2hpdGV8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60',
-        height: height,
-        width: width,
-        fit: BoxFit.fitWidth,
-      ),
-    );
-  }
-
-  Widget page2() {
-    return Positioned(
-        top: top_page2,
-        child: Column(children: [
-          SizedBox(height: buffer),
-          FadeInImage.memoryNetwork(
-            placeholder: kTransparentImage,
-            image:
-                'https://images.unsplash.com/photo-1531315630201-bb15abeb1653?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTd8fGJhY2tncm91bmR8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60',
-            height: height,
-            width: width,
-            fit: BoxFit.fitWidth,
-          )
-        ]));
-  }
-
-  Widget page3() {
-    return Positioned(
-        top: top_page3,
-        child: Column(children: [
-          SizedBox(height: buffer),
-          FadeInImage.memoryNetwork(
-            placeholder: kTransparentImage,
-            image:
-                'https://images.unsplash.com/photo-1515462277126-2dd0c162007a?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTI4fHxiYWNrZ3JvdW5kfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60',
-            height: height,
-            width: width,
-            fit: BoxFit.fitWidth,
-          )
-        ]));
-  }
-
-  Widget page4() {
-    return Positioned(
-        top: top_page4,
-        child: Column(children: [
-          SizedBox(height: buffer),
-          FadeInImage.memoryNetwork(
-            placeholder: kTransparentImage,
-            image:
-                'https://images.unsplash.com/photo-1491147334573-44cbb4602074?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mzd8fGJhY2tncm91bmR8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60',
-            height: height,
-            width: width,
-            fit: BoxFit.fitWidth,
-          )
-        ]));
-  }
-
-  // Last page uses singleChildScrollView to expand the page length (height*page number)
-  Widget last_page() {
-    return SingleChildScrollView(
-        child: Column(
-      children: <Widget>[
-        SizedBox(
-            height:
-                height * (totalpagenumber - 1) + buffer * (totalpagenumber)),
-        //
-        Positioned(
-          child: FadeInImage.memoryNetwork(
-            placeholder: kTransparentImage,
-            image:
-                'https://images.unsplash.com/photo-1487700160041-babef9c3cb55?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NzF8fGJhY2tncm91bmR8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60',
-            height: height,
-            width: width,
-            fit: BoxFit.cover,
-          ),
-        ),
-        const Text(
-          'Thank You',
-          style: TextStyle(
-            backgroundColor: Colors.black54,
-            fontSize: 28.0,
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
-          ),
-        ),
-      ],
-    ));
   }
 }
 
-class NoScrollGlow extends ScrollBehavior {
+class ParallaxWidget extends StatelessWidget {
+  const ParallaxWidget({
+    Key? key,
+    required this.top,
+    required this.asset,
+  }) : super(key: key);
+
+  final double top;
+  final String asset;
+
   @override
-  Widget buildViewportChrome(
-    BuildContext context,
-    Widget child,
-    AxisDirection axisDirection,
-  ) {
-    return child;
+  Widget build(BuildContext context) {
+    return Positioned(
+      top: top,
+      child: Container(
+        height: MediaQuery.of(context).size.height,
+        width: MediaQuery.of(context).size.width,
+        child: Image.asset("assets/images/image2.jpeg", fit: BoxFit.cover),
+      ),
+    );
   }
 }
