@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter/services.dart';
+import 'package:slide_countdown_clock/slide_countdown_clock.dart';
 import 'dart:math' as math;
 
 void main() {
@@ -45,6 +47,8 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
+  final Duration _duration = const Duration(seconds: 4704550);
   double imgRateZero = 0;
   double imgRateOne = 0;
   double imgRateTwo = 0;
@@ -58,6 +62,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       backgroundColor: const Color(0xff210002),
       body: NotificationListener(
         onNotification: (sc) {
@@ -148,6 +153,46 @@ class _MyHomePageState extends State<MyHomePage> {
                             ],
                           ),
                           const SizedBox(height: 45),
+                          const Text(
+                            'Grab the Opportunity!!',
+                            style: TextStyle(
+                              fontFamily: "Nerko One",
+                              color: Colors.teal,
+                              fontSize: 40.0,
+                              fontWeight: FontWeight.normal,
+                            ),
+                          ),
+                          const SizedBox(height: 50),
+                          Padding(
+                            padding: const EdgeInsets.all(10),
+                            child: SlideCountdownClock(
+                              duration: _duration,
+                              slideDirection: SlideDirection.Up,
+                              separator: "-",
+                              textStyle: const TextStyle(
+                                fontSize: 50,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                              ),
+                              separatorTextStyle: const TextStyle(
+                                fontSize: 50,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.orange,
+                              ),
+                              padding: const EdgeInsets.all(10),
+                              decoration: const BoxDecoration(
+                                  color: Colors.blueGrey,
+                                  shape: BoxShape.circle),
+                              onDone: () {
+                                _scaffoldKey.currentState?.showSnackBar(
+                                  const SnackBar(
+                                    content: Text('Time is Up'),
+                                  ),
+                                );
+                              },
+                            ),
+                          ),
+                          const SizedBox(height: 80),
                           Transform.rotate(
                             angle: math.pi / 45.0,
                             child: Container(
@@ -185,7 +230,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               height: 150.0,
                             ),
                           ),
-                          const SizedBox(height: 45),
+                          const SizedBox(height: 80),
                           ButtonBar(
                             children: [
                               ElevatedButton(
@@ -761,9 +806,6 @@ class _MyHomePageState extends State<MyHomePage> {
                             ],
                           ),
                           const SizedBox(height: 25),
-                          const SizedBox(
-                            height: 50,
-                          )
                         ],
                       ),
                     ],
@@ -832,26 +874,6 @@ class _MyHomePageState extends State<MyHomePage> {
                             ],
                           ),
                           const SizedBox(height: 25),
-                          // const Text(
-                          //   "Made By",
-                          //   textAlign: TextAlign.center,
-                          //   style: TextStyle(
-                          //     fontSize: 15,
-                          //     fontFamily: "Poppins",
-                          //     letterSpacing: 1.3,
-                          //     color: Color(0xffffaf00),
-                          //   ),
-                          // ),
-                          // const Text(
-                          //   "XamDesign",
-                          //   textAlign: TextAlign.center,
-                          //   style: TextStyle(
-                          //     fontSize: 20,
-                          //     fontFamily: "Poppins",
-                          //     letterSpacing: 1.8,
-                          //     color: Color(0xffffaf00),
-                          //   ),
-                          // ),
                           const SizedBox(
                             height: 50,
                           )
@@ -907,6 +929,10 @@ class Splash extends StatelessWidget {
               : Image.asset('assets/images/splashpage_red.png')),
     );
   }
+}
+
+Widget _buildSpace() {
+  return const SizedBox(height: 50);
 }
 
 class Init {
