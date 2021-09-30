@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'dart:math' as math;
-import 'package:flutter_timer_countdown/flutter_timer_countdown.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  SystemChrome.setEnabledSystemUIOverlays(
-      [SystemUiOverlay.bottom, SystemUiOverlay.top]);
+  SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
+      overlays: [SystemUiOverlay.bottom, SystemUiOverlay.top]);
   runApp(const MyApp());
 }
 
@@ -251,7 +250,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 color: Color(0xffffaf00)),
                           ),
                           const Text(
-                            "TOWAIT",
+                            "Join Us!",
                             textAlign: TextAlign.center,
                             style: TextStyle(
                                 fontSize: 48,
@@ -293,160 +292,409 @@ class _MyHomePageState extends State<MyHomePage> {
                               ),
                             ],
                           ),
+                          GridView.count(
+                            shrinkWrap: true,
+                            primary: false,
+                            padding: const EdgeInsets.all(10),
+                            crossAxisSpacing: 20,
+                            mainAxisSpacing: 20,
+                            crossAxisCount: 3,
+                            children: <Widget>[
+                              Container(
+                                width: 200,
+                                child: Card(
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(15.0),
+                                  ),
+                                  color: Colors.pink,
+                                  elevation: 10,
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: <Widget>[
+                                      const ListTile(
+                                        leading: Icon(Icons.album, size: 70),
+                                        title: Text('Speaker',
+                                            style:
+                                                TextStyle(color: Colors.white)),
+                                        subtitle: Text('--some text--',
+                                            style:
+                                                TextStyle(color: Colors.white)),
+                                      ),
+                                      ButtonTheme(
+                                        child: ButtonBar(
+                                          children: <Widget>[
+                                            TextButton(
+                                              child: const Text('Sign In',
+                                                  style: TextStyle(
+                                                      color: Colors.white)),
+                                              onPressed: () {},
+                                            ),
+                                            TextButton(
+                                              child: const Text('Sign Up',
+                                                  style: TextStyle(
+                                                      color: Colors.white)),
+                                              onPressed: () {},
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      const CircleAvatar(
+                                        backgroundImage: ExactAssetImage(
+                                            'assets/images/myAvatar.png'),
+                                        radius: 100,
+                                      ),
+                                      SizedBox(
+                                        height: 20,
+                                        width: 150.0,
+                                        child: Divider(
+                                          color: Colors.teal.shade100,
+                                        ),
+                                      ),
+                                      Center(
+                                        child: Text(
+                                          '--Name--',
+                                          style: TextStyle(
+                                            fontFamily: "Nerko One",
+                                            color: Colors.blueGrey.shade900,
+                                            fontSize: 30.0,
+                                            fontWeight: FontWeight.normal,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                width: 200,
+                                child: Card(
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(15.0),
+                                  ),
+                                  color: Colors.pink,
+                                  elevation: 10,
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: <Widget>[
+                                      const ListTile(
+                                        leading: Icon(Icons.album, size: 70),
+                                        title: Text('Speaker',
+                                            style:
+                                                TextStyle(color: Colors.white)),
+                                        subtitle: Text('--some text--',
+                                            style:
+                                                TextStyle(color: Colors.white)),
+                                      ),
+                                      ButtonTheme(
+                                        child: ButtonBar(
+                                          children: <Widget>[
+                                            TextButton(
+                                              child: const Text('Sign In',
+                                                  style: TextStyle(
+                                                      color: Colors.white)),
+                                              onPressed: () {},
+                                            ),
+                                            TextButton(
+                                              child: const Text('Sign Up',
+                                                  style: TextStyle(
+                                                      color: Colors.white)),
+                                              onPressed: () {},
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      const CircleAvatar(
+                                        backgroundImage: ExactAssetImage(
+                                            'assets/images/myAvatar.png'),
+                                        radius: 100,
+                                      ),
+                                      SizedBox(
+                                        height: 20,
+                                        width: 150.0,
+                                        child: Divider(
+                                          color: Colors.teal.shade100,
+                                        ),
+                                      ),
+                                      Center(
+                                        child: Text(
+                                          '--Name--',
+                                          style: TextStyle(
+                                            fontFamily: "Nerko One",
+                                            color: Colors.blueGrey.shade900,
+                                            fontSize: 30.0,
+                                            fontWeight: FontWeight.normal,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                width: 200,
+                                child: Card(
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(15.0),
+                                  ),
+                                  color: Colors.pink,
+                                  elevation: 10,
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: <Widget>[
+                                      const ListTile(
+                                        leading: Icon(Icons.album, size: 70),
+                                        title: Text('Speaker',
+                                            style:
+                                                TextStyle(color: Colors.white)),
+                                        subtitle: Text('--some text--',
+                                            style:
+                                                TextStyle(color: Colors.white)),
+                                      ),
+                                      ButtonTheme(
+                                        child: ButtonBar(
+                                          children: <Widget>[
+                                            TextButton(
+                                              child: const Text('Sign In',
+                                                  style: TextStyle(
+                                                      color: Colors.white)),
+                                              onPressed: () {},
+                                            ),
+                                            TextButton(
+                                              child: const Text('Sign Up',
+                                                  style: TextStyle(
+                                                      color: Colors.white)),
+                                              onPressed: () {},
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      const CircleAvatar(
+                                        backgroundImage: ExactAssetImage(
+                                            'assets/images/myAvatar.png'),
+                                        radius: 100,
+                                      ),
+                                      SizedBox(
+                                        height: 20,
+                                        width: 150.0,
+                                        child: Divider(
+                                          color: Colors.teal.shade100,
+                                        ),
+                                      ),
+                                      Center(
+                                        child: Text(
+                                          '--Name--',
+                                          style: TextStyle(
+                                            fontFamily: "Nerko One",
+                                            color: Colors.blueGrey.shade900,
+                                            fontSize: 30.0,
+                                            fontWeight: FontWeight.normal,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                width: 200,
+                                child: Card(
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(15.0),
+                                  ),
+                                  color: Colors.pink,
+                                  elevation: 10,
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: <Widget>[
+                                      const ListTile(
+                                        leading: Icon(Icons.album, size: 70),
+                                        title: Text('Speaker',
+                                            style:
+                                                TextStyle(color: Colors.white)),
+                                        subtitle: Text('--some text--',
+                                            style:
+                                                TextStyle(color: Colors.white)),
+                                      ),
+                                      ButtonTheme(
+                                        child: ButtonBar(
+                                          children: <Widget>[
+                                            TextButton(
+                                              child: const Text('Sign In',
+                                                  style: TextStyle(
+                                                      color: Colors.white)),
+                                              onPressed: () {},
+                                            ),
+                                            TextButton(
+                                              child: const Text('Sign Up',
+                                                  style: TextStyle(
+                                                      color: Colors.white)),
+                                              onPressed: () {},
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      const CircleAvatar(
+                                        backgroundImage: ExactAssetImage(
+                                            'assets/images/myAvatar.png'),
+                                        radius: 100,
+                                      ),
+                                      SizedBox(
+                                        height: 20,
+                                        width: 150.0,
+                                        child: Divider(
+                                          color: Colors.teal.shade100,
+                                        ),
+                                      ),
+                                      Center(
+                                        child: Text(
+                                          '--Name--',
+                                          style: TextStyle(
+                                            fontFamily: "Nerko One",
+                                            color: Colors.blueGrey.shade900,
+                                            fontSize: 30.0,
+                                            fontWeight: FontWeight.normal,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                width: 200,
+                                child: Card(
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(15.0),
+                                  ),
+                                  color: Colors.pink,
+                                  elevation: 10,
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: <Widget>[
+                                      const ListTile(
+                                        leading: Icon(Icons.album, size: 70),
+                                        title: Text('Speaker',
+                                            style:
+                                                TextStyle(color: Colors.white)),
+                                        subtitle: Text('--some text--',
+                                            style:
+                                                TextStyle(color: Colors.white)),
+                                      ),
+                                      ButtonTheme(
+                                        child: ButtonBar(
+                                          children: <Widget>[
+                                            TextButton(
+                                              child: const Text('Sign In',
+                                                  style: TextStyle(
+                                                      color: Colors.white)),
+                                              onPressed: () {},
+                                            ),
+                                            TextButton(
+                                              child: const Text('Sign Up',
+                                                  style: TextStyle(
+                                                      color: Colors.white)),
+                                              onPressed: () {},
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      const CircleAvatar(
+                                        backgroundImage: ExactAssetImage(
+                                            'assets/images/myAvatar.png'),
+                                        radius: 100,
+                                      ),
+                                      SizedBox(
+                                        height: 20,
+                                        width: 150.0,
+                                        child: Divider(
+                                          color: Colors.teal.shade100,
+                                        ),
+                                      ),
+                                      Center(
+                                        child: Text(
+                                          '--Name--',
+                                          style: TextStyle(
+                                            fontFamily: "Nerko One",
+                                            color: Colors.blueGrey.shade900,
+                                            fontSize: 30.0,
+                                            fontWeight: FontWeight.normal,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                width: 200,
+                                child: Card(
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(15.0),
+                                  ),
+                                  color: Colors.pink,
+                                  elevation: 10,
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: <Widget>[
+                                      const ListTile(
+                                        leading: Icon(Icons.album, size: 70),
+                                        title: Text('Speaker',
+                                            style:
+                                                TextStyle(color: Colors.white)),
+                                        subtitle: Text('--some text--',
+                                            style:
+                                                TextStyle(color: Colors.white)),
+                                      ),
+                                      ButtonTheme(
+                                        child: ButtonBar(
+                                          children: <Widget>[
+                                            TextButton(
+                                              child: const Text('Sign In',
+                                                  style: TextStyle(
+                                                      color: Colors.white)),
+                                              onPressed: () {},
+                                            ),
+                                            TextButton(
+                                              child: const Text('Sign Up',
+                                                  style: TextStyle(
+                                                      color: Colors.white)),
+                                              onPressed: () {},
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      const CircleAvatar(
+                                        backgroundImage: ExactAssetImage(
+                                            'assets/images/myAvatar.png'),
+                                        radius: 100,
+                                      ),
+                                      SizedBox(
+                                        height: 20,
+                                        width: 150.0,
+                                        child: Divider(
+                                          color: Colors.teal.shade100,
+                                        ),
+                                      ),
+                                      Center(
+                                        child: Text(
+                                          '--Name--',
+                                          style: TextStyle(
+                                            fontFamily: "Nerko One",
+                                            color: Colors.blueGrey.shade900,
+                                            fontSize: 30.0,
+                                            fontWeight: FontWeight.normal,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
                           const SizedBox(height: 25),
                         ],
                       ),
-                      // const Text(
-                      //   "SPEAKERS",
-                      //   textAlign: TextAlign.center,
-                      //   style: TextStyle(
-                      //       fontSize: 50,
-                      //       fontFamily: "Poppins",
-                      //       letterSpacing: 1.8,
-                      //       color: Color(0xffffaf00)),
-                      // ),
-                      GridView.count(
-                        primary: false,
-                        padding: const EdgeInsets.all(10),
-                        crossAxisSpacing: 20,
-                        mainAxisSpacing: 20,
-                        crossAxisCount: 3,
-                        children: <Widget>[
-                          Container(
-                            padding: const EdgeInsets.all(8),
-                            child: Card(
-                              clipBehavior: Clip.antiAlias,
-                              child: Column(
-                                children: [
-                                  ListTile(
-                                    leading: const Icon(
-                                        Icons.arrow_drop_down_circle),
-                                    title: const Text('Card title 1'),
-                                    subtitle: Text(
-                                      'Secondary Text',
-                                      style: TextStyle(
-                                          color: Colors.black.withOpacity(0.6)),
-                                    ),
-                                  ),
-                                  const Padding(padding: EdgeInsets.all(16.0)),
-                                  Image.asset('assets/images/image3.jpeg'),
-                                ],
-                              ),
-                            ),
-                          ),
-                          Container(
-                            padding: const EdgeInsets.all(8),
-                            child: Card(
-                              clipBehavior: Clip.antiAlias,
-                              child: Column(
-                                children: [
-                                  ListTile(
-                                    leading: const Icon(
-                                        Icons.arrow_drop_down_circle),
-                                    title: const Text('Card title 1'),
-                                    subtitle: Text(
-                                      'Secondary Text',
-                                      style: TextStyle(
-                                          color: Colors.black.withOpacity(0.6)),
-                                    ),
-                                  ),
-                                  const Padding(padding: EdgeInsets.all(16.0)),
-                                  Image.asset('assets/images/image3.jpeg'),
-                                ],
-                              ),
-                            ),
-                          ),
-                          Container(
-                            padding: const EdgeInsets.all(8),
-                            child: Card(
-                              clipBehavior: Clip.antiAlias,
-                              child: Column(
-                                children: [
-                                  ListTile(
-                                    leading: const Icon(
-                                        Icons.arrow_drop_down_circle),
-                                    title: const Text('Card title 1'),
-                                    subtitle: Text(
-                                      'Secondary Text',
-                                      style: TextStyle(
-                                          color: Colors.black.withOpacity(0.6)),
-                                    ),
-                                  ),
-                                  const Padding(padding: EdgeInsets.all(16.0)),
-                                  Image.asset('assets/images/image3.jpeg'),
-                                ],
-                              ),
-                            ),
-                          ),
-                          Container(
-                            padding: const EdgeInsets.all(8),
-                            child: Card(
-                              clipBehavior: Clip.antiAlias,
-                              child: Column(
-                                children: [
-                                  ListTile(
-                                    leading: const Icon(
-                                        Icons.arrow_drop_down_circle),
-                                    title: const Text('Card title 1'),
-                                    subtitle: Text(
-                                      'Secondary Text',
-                                      style: TextStyle(
-                                          color: Colors.black.withOpacity(0.6)),
-                                    ),
-                                  ),
-                                  const Padding(padding: EdgeInsets.all(16.0)),
-                                  Image.asset('assets/images/image3.jpeg'),
-                                ],
-                              ),
-                            ),
-                          ),
-                          Container(
-                            padding: const EdgeInsets.all(8),
-                            child: Card(
-                              clipBehavior: Clip.antiAlias,
-                              child: Column(
-                                children: [
-                                  ListTile(
-                                    leading: const Icon(
-                                        Icons.arrow_drop_down_circle),
-                                    title: const Text('Card title 1'),
-                                    subtitle: Text(
-                                      'Secondary Text',
-                                      style: TextStyle(
-                                          color: Colors.black.withOpacity(0.6)),
-                                    ),
-                                  ),
-                                  const Padding(padding: EdgeInsets.all(16.0)),
-                                  Image.asset('assets/images/image3.jpeg'),
-                                ],
-                              ),
-                            ),
-                          ),
-                          Container(
-                            padding: const EdgeInsets.all(8),
-                            child: Card(
-                              clipBehavior: Clip.antiAlias,
-                              child: Column(
-                                children: [
-                                  ListTile(
-                                    leading: const Icon(
-                                        Icons.arrow_drop_down_circle),
-                                    title: const Text('Card title 1'),
-                                    subtitle: Text(
-                                      'Secondary Text',
-                                      style: TextStyle(
-                                          color: Colors.black.withOpacity(0.6)),
-                                    ),
-                                  ),
-                                  const Padding(padding: EdgeInsets.all(16.0)),
-                                  Image.asset('assets/images/image3.jpeg'),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                      // const SizedBox(height: 50),
                     ],
                   ),
                 ),
@@ -669,6 +917,6 @@ class Init {
     // This is where you can initialize the resources needed by your app while
     // the splash screen is displayed.  Remove the following example because
     // delaying the user experience is a bad design practice!
-    await Future.delayed(const Duration(seconds: 5));
+    await Future.delayed(const Duration(seconds: 2));
   }
 }
