@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter/services.dart';
 import 'package:slide_countdown_clock/slide_countdown_clock.dart';
 import 'dart:math' as math;
+
+import 'login/login_page.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -805,7 +806,8 @@ class _MyHomePageState extends State<MyHomePage> {
                               ),
                             ],
                           ),
-                          const SizedBox(height: 25),
+                          const SizedBox(height: 80),
+                          LoginPage()
                         ],
                       ),
                     ],
@@ -874,11 +876,41 @@ class _MyHomePageState extends State<MyHomePage> {
                             ],
                           ),
                           const SizedBox(height: 25),
-                          const SizedBox(
-                            height: 50,
-                          )
                         ],
                       ),
+                      SizedBox(
+                        width: 250,
+                        height: 250,
+                        child: Stack(
+                          children: <Widget>[
+                            Container(
+                              width: 250,
+                              height: 250,
+                              color: Colors.pink,
+                            ),
+                            Container(
+                              padding: const EdgeInsets.all(5.0),
+                              alignment: Alignment.bottomCenter,
+                              decoration: BoxDecoration(
+                                gradient: LinearGradient(
+                                  begin: Alignment.topCenter,
+                                  end: Alignment.bottomCenter,
+                                  colors: <Color>[
+                                    Colors.black.withAlpha(0),
+                                    Colors.black12,
+                                    Colors.black45
+                                  ],
+                                ),
+                              ),
+                              child: const Text(
+                                'Foreground Text',
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 20.0),
+                              ),
+                            ),
+                          ],
+                        ),
+                      )
                     ],
                   ),
                 ),
