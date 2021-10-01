@@ -1,1 +1,0 @@
-web: flutter run lib/main.dart --no-sound-null-safety
